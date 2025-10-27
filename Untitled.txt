@@ -1,0 +1,54 @@
+FRONTEND REACT:
+dependcies used: react router dom: for url routing
+		 luicide-react: icons
+		 react-hot-toast: notifactions
+		 react-player: to run videos here
+		 clerk: for auth
+
+		 prebuilt ui: for footer componnet 
+
+Link tag in react to naviagte from pages using clicks 
+-this is for navigation without pg reload
+-renders ui
+-used in navbars, btns, etc
+
+Navigate- programmatically navigate between routes
+-For navigation triggered by code, not by a clickable link
+-doesnt render ui
+-used in api, form actions
+
+we used z-index also 
+-basically property in css 
+-controls the z axis (which element should appear on top of which element, when they are collided )
+
+BACKEND: 
+in package.json: type:'module'- default behaviour is ESM, allows import/export, top level await allowed
+				 type:'commonjs'-default behaviour is COMMONJS, allows require/modules.export, top level await not allowed
+
+packages used: express
+			   cors: allows any backend to connect wth FRONTEND
+			   dotenv: to use env variables
+			   mongoose: to connect backend server with mongodb 
+			   axios: api calls
+			   cloudinary: store images on cloud
+			   nodemon (installed in dev dependencies)
+
+	dependencies-packages needed while running and developing the app
+	dev dependcies-packages needed only while developing not running 
+
+User.js: model that stores the user data 
+       we have used clerk to authenticate user data in frontnend, so we need to install clerk in backend also using the steps given the docs
+	   -clerk webhooks: http callbacks Clerk sends to server when event happens in auth system 
+	   		events like: user.created, upadted, deleted, etc
+			basic use of webhooks: when user logins the user data is in clerk only to take that data in localy on server we use webhooks 
+				User signs up on your app
+					↓
+				Clerk creates user account
+					↓
+				Clerk sends webhook to your server
+					↓
+				Your server receives webhook & saves user to MongoDB
+		-to send these webhooks securely we use ingest
+		what ingest does:
+			1. Verify webhooks are actually from Clerk (not fake/malicious)
+			2. Parse the webhook payload safely
