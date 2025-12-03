@@ -94,14 +94,12 @@ export const addShow = async (req, res) => {
 
         if (showsToCreate.length > 0) {
             const inserted = await Shows.insertMany(showsToCreate);
-            console.log("✅ Inserted shows:", inserted.length);
             res.json({ success: true, message: `${inserted.length} show(s) added successfully` });
         } else {
             res.status(400).json({ success: false, message: "No valid shows to create" });
         }
 
     } catch (error) {
-        console.error("❌ Error in addShow:", error.message);
         res.status(500).json({ success: false, message: error.message });
     }
 };
