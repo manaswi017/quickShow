@@ -52,3 +52,18 @@ User.js: model that stores the user data
 		what ingest does:
 			1. Verify webhooks are actually from Clerk (not fake/malicious)
 			2. Parse the webhook payload safely
+
+deploy on vercel:
+	after deploying on vercel, sync the app with inngest by just adding the vercel deployed url 
+
+used tmdb api for movie data
+
+
+to connect the frontens to the backend we provide the 
+	backend url in the client .env file 
+	then install axios in frontend to run the api calls
+	also made a context folder and a file for handling context apis
+	also wrap thee </App> in main.jsx with <appcontext> so that we can use context api and states and funstions used there 
+
+
+images, heart icon, 
