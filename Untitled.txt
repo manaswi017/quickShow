@@ -66,4 +66,9 @@ to connect the frontens to the backend we provide the
 	also wrap thee </App> in main.jsx with <appcontext> so that we can use context api and states and funstions used there 
 
 
+for payments 
+	stripe
+	to verify stripe payments - stripe webhooks
+	to manage stripe webhooks - svix
+
 images, heart icon, 

@@ -143,6 +143,7 @@ export const getShow = async (req, res) => {
                 dateTime[date] = [];
             }
             dateTime[date].push({ time: s.showDateTime, showId: s._id });
+            console.log("SHOW DATETIME:", s.showDateTime);
         })
 
         res.json({ success: true, movie, showTimes: dateTime });
