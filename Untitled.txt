@@ -71,4 +71,11 @@ for payments
 	to verify stripe payments - stripe webhooks
 	to manage stripe webhooks - svix
 
+
+for mailing user (confirmations)
+	nodemailer
+
+for smtp details
+	brevo
+
 images, heart icon, 

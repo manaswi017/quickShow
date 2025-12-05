@@ -72,6 +72,35 @@ const releaseSeatsAndDeleteBooking=inngest.createFunction(
     })
 })
 
+// inngest funtion to send email when user books 
+const sendBookingConfirmationEmail=inngest.createFunction(
+    {id: "send-booking-confirmation-email"},
+    {event: "app/show.booked"},
+    async ({event, step})=>{
+        const {bookingId}=event.data;
+        const booking=await Booking.findById(bookingId).populate('user').populate({
+            path: 'show',
+            populate: {path: 'movie', model: 'Movie'}
+        }).populate ('user');
+
+        await sendEmail({
+            to: booking.user.email,
+            subject: `Payment Confirmation: "${booking.amount} for ${booking.show.movie.title}" booked!`,
+            body: `<div style="font-family: Arial, sans-serif; line-height: 1.5;">
+                    <h2>Hi ${booking.user.name},</h2>
+                    <p>Thank you for your payment of <strong>$${booking.amount}</strong> for the movie <strong>${booking.show.movie.title}</strong>.</p>
+                    <p>Your booking details are as follows:</p>
+                    <strong>Show Date & Time:</strong> ${new Date(booking.show.showDateTime).toLocaleString()}<br/>
+                    <strong>Booked Seats:</strong> ${booking.bookedSeats.join(', ')}<br/>
+                    <strong>Booking ID:</strong> ${booking._id}<br/>
+                    <p>We look forward to seeing you at the show!</p>
+                    <br/>
+                    <p>Best regards,<br/>QuickShow Team</p>
+                  </div>`
+        })
+    }
+)
+
 
 // Create an empty array where we'll export future Inngest functions
-export const functions = [syncUserCreation, syncUserDeletion, syncUserUpdation, releaseSeatsAndDeleteBooking];
+export const functions = [syncUserCreation, syncUserDeletion, syncUserUpdation, releaseSeatsAndDeleteBooking, sendBookingConfirmationEmail];
