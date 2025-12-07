@@ -17,7 +17,7 @@ const port = 3000;
 
 await connectDB();
 
-// stripe webhook route
+// stripe webhook route (MUST be before express.json())
 app.use('/api/stripe', express.raw({type: 'application/json'}), stripeWebhooks);
 
 // middleware
@@ -29,12 +29,12 @@ app.get('/', (req, res) => res.send('Server is live!'));
 // Inngest
 app.use('/api/inngest', serve({ client: inngest, functions }));
 
-// Public routes (NO clerkMiddleware)
+// Public routes (NO authentication needed)
 app.use('/api/show', showRouter);
-app.use('/api/booking', bookingRouter);
-app.use('/api/user', userRouter);
 
-// Admin routes (WITH Clerk authentication)
+// Protected routes (WITH Clerk authentication) - ADD clerkMiddleware here
+app.use('/api/booking', clerkMiddleware(), bookingRouter);
+app.use('/api/user', clerkMiddleware(), userRouter);
 app.use('/api/admin', clerkMiddleware(), adminRouter);
 
 app.listen(port, () =>
