@@ -1,7 +1,7 @@
 import { Inngest } from "inngest";
 import User from "../models/User.js";
 import Booking from "../models/Booking.js";
-import { use } from "react";
+// import { use } from "react";
 import sendEmail from "../configs/nodeMailer.js";
 
 // Create a client to send and receive events

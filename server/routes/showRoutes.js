@@ -1,5 +1,5 @@
 import express from "express";
-import { addShow, getNowPlayingMovies, getShow, getShowById, getShows } from "../controllers/showControllers.js";
+import { addShow, getNowPlayingMovies, getShow, getShows } from "../controllers/showControllers.js";
 import { protectAdmin } from "../middleware/auth.js";
 
 

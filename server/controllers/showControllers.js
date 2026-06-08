@@ -270,7 +270,7 @@ export const addShow = async (req, res) => {
 
 export const getShows = async (req, res) => {
     try {
-        const shows = await Shows.find({ showDateTime: { $gte: new Date() } })
+        const shows = await Shows.find({})
             .populate('movie')
             .sort({ showDateTime: 1 });
         
@@ -333,8 +333,7 @@ export const getShow = async (req, res) => {
     try {
         const { movieId } = req.params;
         const shows = await Shows.find({ 
-            movie: movieId, 
-            showDateTime: { $gte: new Date() } 
+            movie: movieId,  
         }).sort({ showDateTime: 1 });
         
         const movie = await Movie.findById(movieId);
