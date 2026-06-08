@@ -1,1 +1,12 @@
 node_modules
+<<<<<<< HEAD
+.env
+server/.env
+client/.env
+dist
+build
+=======
+server/.env
+client/.env
+*.env
+>>>>>>> 308dfc4dbdd7757f1523424f0baf4248c3f41f9e
